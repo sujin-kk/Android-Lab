@@ -5,14 +5,14 @@ plugins {
 
 android {
     namespace 'com.example.siolab'
-    compileSdk 32
+    compileSdk buildInfo.compileSdk
 
     defaultConfig {
         applicationId "com.example.siolab"
-        minSdk 21
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        minSdk buildInfo.minSdk
+        targetSdk buildInfo.targetSdk
+        versionCode buildInfo.versionCode
+        versionName buildInfo.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
