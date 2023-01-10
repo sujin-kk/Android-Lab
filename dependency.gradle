@@ -19,7 +19,8 @@ ext {
             "material"        : "1.7.0",
             "junit"           : "4.13.2",
             "testJunit"       : "1.1.5",
-            "testEspresso"    : "3.5.1"
+            "testEspresso"    : "3.5.1",
 
+            "timber": "5.0.1"
     ]
 }
