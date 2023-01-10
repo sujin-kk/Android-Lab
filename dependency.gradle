@@ -1,0 +1,25 @@
+ext {
+    buildInfo = [
+            "compileSdk" : 31,
+            "minSdk"     : 23,
+            "targetSdk"  : 31,
+            "versionCode": 1,
+            "versionName": "1.0",
+            "id"         : "come.example",
+            "name"       : "siolab"
+    ]
+}
+
+ext {
+    versions = [
+            "coreKtx"         : "1.7.0",
+            "appcompat"       : "1.5.1",
+            "constraintLayout": "2.1.4",
+            "navigation"      : "2.5.3",
+            "material"        : "1.7.0",
+            "junit"           : "4.13.2",
+            "testJunit"       : "1.1.5",
+            "testEspresso"    : "3.5.1"
+
+    ]
+}
