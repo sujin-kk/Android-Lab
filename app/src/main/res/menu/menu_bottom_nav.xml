@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/menu_bottom_nav">
+        <item
+            android:id="@+id/SendFragment"
+            android:title="@string/send_label" />
+        <item
+            android:id="@+id/historyFragment"
+            android:icon="@drawable/ic_bottom_category"
+            android:title="@string/history_label" />
+        <item
+            android:id="@+id/BenefitFragment"
+            android:title="@string/benefit_label" />
+        <item
+            android:id="@+id/ServiceCenterFragment"
+            android:title="@string/service_center_label" />
+        <item
+            android:id="@+id/AllMenuFragment"
+            android:title="@string/all_menu_label" />
+    </group>
+</menu>

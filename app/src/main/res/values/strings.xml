@@ -9,4 +9,10 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="send_label">송금하기</string>
+    <string name="history_label">송금내역</string>
+    <string name="benefit_label">혜택</string>
+    <string name="service_center_label">고객센터</string>
+    <string name="all_menu_label">전체</string>
 </resources>
