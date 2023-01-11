@@ -26,7 +26,7 @@
             android:id="@+id/nav_bottom_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/space_padding_4"
+            android:paddingVertical="@dimen/spacing_4"
             app:itemIconTint="@drawable/bottom_nav_selector"
             app:itemTextColor="@drawable/bottom_nav_selector"
             app:labelVisibilityMode="labeled"

@@ -12,23 +12,27 @@
         tools:layout="@layout/fragment_send" />
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.siolab.presentation.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/historyFragment"
+        android:name="com.example.siolab.presentation.ui.history.HistoryFragment"
+        android:label="@string/history_label"
+        tools:layout="@layout/fragment_history" />
 
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.siolab.presentation.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/benefitFragment"
+        android:name="com.example.siolab.presentation.ui.benefit.BenefitFragment"
+        android:label="@string/benefit_label"
+        tools:layout="@layout/fragment_benefit" />
 
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
+    <fragment
+        android:id="@+id/serviceCenterFragment"
+        android:name="com.example.siolab.presentation.ui.service.ServiceCenterFragment"
+        android:label="@string/service_center_label"
+        tools:layout="@layout/fragment_service_center" />
+
+    <fragment
+        android:id="@+id/allMenuFragment"
+        android:name="com.example.siolab.presentation.ui.all.AllMenuFragment"
+        android:label="@string/all_menu_label"
+        tools:layout="@layout/fragment_all_menu" />
+
 </navigation>

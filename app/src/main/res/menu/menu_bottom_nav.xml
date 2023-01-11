@@ -3,7 +3,7 @@
     <group android:id="@+id/menu_bottom_nav">
         <item
             android:id="@+id/sendFragment"
-            android:icon="@drawable/ic_send_active"
+            android:icon="@drawable/ic_send"
             android:title="@string/send_label" />
         <item
             android:id="@+id/historyFragment"

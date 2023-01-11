@@ -11,7 +11,13 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 
+    <!-- Send Fragment -->
     <string name="send_label">송금하기</string>
+    <string name="send_top_exchange_rate_text">1 %s = %s %s</string>
+    <string name="send_money_sender_label">보내는 금액</string>
+    <string name="send_money_sender_enabled_warning">%s %s 이상일 때 송금 가능</string>
+    <string name="send_money_receiver_label">받는 금액</string>
+
     <string name="history_label">송금내역</string>
     <string name="benefit_label">혜택</string>
     <string name="service_center_label">고객센터</string>

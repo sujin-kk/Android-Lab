@@ -1,8 +1,8 @@
 ext {
     buildInfo = [
-            "compileSdk" : 31,
+            "compileSdk" : 32,
             "minSdk"     : 23,
-            "targetSdk"  : 31,
+            "targetSdk"  : 32,
             "versionCode": 1,
             "versionName": "1.0",
             "id"         : "come.example",
@@ -13,7 +13,7 @@ ext {
 ext {
     versions = [
             "core_ktx"         : "1.7.0",
-            "appcompat"       : "1.5.1",
+            "appcompat"       : "1.4.2",
             "constraint_layout": "2.1.4",
             "navigation"      : "2.5.3",
             "material"        : "1.7.0",
@@ -22,6 +22,7 @@ ext {
             "test_espresso"    : "3.5.1",
             "timber": "5.0.1",
             "hilt": "2.44",
-            "lifecycle": "2.2.0"
+            "lifecycle": "2.2.0",
+            "coroutine": "1.3.9"
     ]
 }

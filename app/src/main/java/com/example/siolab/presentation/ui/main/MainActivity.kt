@@ -7,7 +7,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.siolab.R
 import com.example.siolab.databinding.ActivityMainBinding
 import com.example.siolab.presentation.common.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val navHostFragment: NavHostFragment by lazy {
         supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -38,4 +40,5 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             }
         }
     }
+
 }
