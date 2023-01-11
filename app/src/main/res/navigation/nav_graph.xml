@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/sendFragment">
+
+    <fragment
+        android:id="@+id/sendFragment"
+        android:name="com.example.siolab.presentation.ui.send.SendFragment"
+        android:label="@string/send_label"
+        tools:layout="@layout/fragment_send" />
 
     <fragment
         android:id="@+id/FirstFragment"

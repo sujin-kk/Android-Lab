@@ -1,52 +1,41 @@
 package com.example.siolab.presentation.ui.main
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.siolab.R
 import com.example.siolab.databinding.ActivityMainBinding
 import com.example.siolab.presentation.common.base.BaseActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
-    private lateinit var navHostFragment: NavHostFragment
-    private lateinit var navController: NavController
+    private val navHostFragment: NavHostFragment by lazy {
+        supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+    }
+
+    private val navController: NavController by lazy {
+        navHostFragment.navController
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         initBottomNavigation()
     }
 
     private fun initBottomNavigation() {
+        with(binding.navBottomView) {
+            setupWithNavController(navController)
 
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+            setOnItemSelectedListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.sendFragment -> navController.navigate(R.id.sendFragment)
+                    R.id.historyFragment -> navController.navigate(R.id.historyFragment)
+                    R.id.benefitFragment -> navController.navigate(R.id.benefitFragment)
+                    R.id.serviceCenterFragment -> navController.navigate(R.id.serviceCenterFragment)
+                    R.id.allMenuFragment -> navController.navigate(R.id.allMenuFragment)
+                }
+                true
+            }
         }
     }
-
-//    override fun onSupportNavigateUp(): Boolean {
-//        val navController = findNavController(R.id.nav_host_fragment_content_main)
-//        return navController.navigateUp(appBarConfiguration)
-//                || super.onSupportNavigateUp()
-//    }
 }
