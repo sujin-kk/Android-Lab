@@ -32,7 +32,7 @@
                 android:background="@drawable/bg_white_rounded_border"
                 android:paddingHorizontal="@dimen/spacing_20"
                 android:paddingVertical="@dimen/spacing_4"
-                android:text="@string/send_top_exchange_rate_text"
+                android:text="@{@string/send_top_exchange_rate_text(viewModel.curReceiver, viewModel.curExchangeRate, viewModel.curSender)}"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
                 android:id="@+id/send_sender_input_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:moneyContent="@{viewModel._moneyOfSender}"
+                app:moneyContent="@{viewModel.moneyOfSender}"
                 app:layout_constraintTop_toBottomOf="@id/send_top_exchange_rate_tv"
                 layout="@layout/layout_send_money_input_view" />
 
@@ -51,7 +51,7 @@
                 android:id="@+id/send_receiver_input_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:moneyContent="@{viewModel._moneyOfReceiver}"
+                app:moneyContent="@{viewModel.moneyOfReceiver}"
                 app:layout_constraintTop_toBottomOf="@id/send_sender_input_view"
                 app:layout_constraintBottom_toBottomOf="parent"
                 layout="@layout/layout_send_money_input_view" />
@@ -63,8 +63,7 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/send_top_header_layout"
-            app:layout_constraintVertical_weight="6"
-            tools:layout_editor_absoluteX="0dp">
+            app:layout_constraintVertical_weight="6">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

@@ -22,33 +22,26 @@ class SendFragment : BaseFragment<FragmentSendBinding>(R.layout.fragment_send) {
         super.onViewCreated(view, savedInstanceState)
 
         initView()
-        initBinding()
+        observeData()
     }
 
     private fun initView() {
         // sender
         binding.sendSenderInputView.isSender = true
-        binding.sendSenderInputView.moneyContent = sendViewModel._moneyOfSender
+        binding.sendSenderInputView.moneyContent = sendViewModel.moneyOfSender
 
         // receiver
         binding.sendReceiverInputView.isSender = false
-        binding.sendReceiverInputView.moneyContent = sendViewModel._moneyOfReceiver
-    }
+        binding.sendReceiverInputView.moneyContent = sendViewModel.moneyOfReceiver
 
-    private fun initBinding() {
-        binding.sendSenderInputView.sendMoneyInputEt.addTextChangedListener(object: TextWatcher {
+        // TODO : 양방향 데이터 바인딩,,,,,,,
+        binding.sendSenderInputView.sendMoneyInputEt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                Timber.e("sender edit text : ${s.toString()}")
-
-                lifecycleScope.launch {
-                    sendViewModel._moneyOfSender.collectLatest {
-                        Timber.e("money of sender flow : $it")
-                    }
-                }
+                sendViewModel.moneyOfSender.value = s.toString()
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -56,6 +49,42 @@ class SendFragment : BaseFragment<FragmentSendBinding>(R.layout.fragment_send) {
             }
 
         })
+
+        binding.sendReceiverInputView.sendMoneyInputEt.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                sendViewModel.moneyOfReceiver.value = s.toString()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
+    }
+
+    private fun observeData() {
+        lifecycleScope.launch {
+            with(sendViewModel) {
+                // 보내는 금액 입력 -> 받는 금액 변화
+                moneyOfSender.observe(viewLifecycleOwner) {
+                    if (binding.sendSenderInputView.sendMoneyInputEt.isFocused) {
+                        binding.sendReceiverInputView.sendMoneyInputEt.setText(sendViewModel.calculateMoneyOfReceiver())
+                    }
+                }
+
+                // 받는 금액 입력 -> 보내는 금액 변화
+                moneyOfReceiver.observe(viewLifecycleOwner) {
+                    if (binding.sendReceiverInputView.sendMoneyInputEt.isFocused) {
+                        binding.sendSenderInputView.sendMoneyInputEt.setText(sendViewModel.calculateMoneyOfSender())
+                    }
+                }
+            }
+        }
+
     }
 
 

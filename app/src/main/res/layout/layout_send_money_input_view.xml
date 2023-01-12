@@ -12,7 +12,7 @@
 
         <variable
             name="moneyContent"
-            type="kotlinx.coroutines.flow.MutableStateFlow&lt;String>" />
+            type="androidx.lifecycle.MutableLiveData&lt;String>" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
