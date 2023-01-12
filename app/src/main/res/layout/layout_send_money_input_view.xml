@@ -3,18 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
 
         <variable
             name="isSender"
             type="Boolean" />
+
+        <variable
+            name="moneyContent"
+            type="kotlinx.coroutines.flow.MutableStateFlow&lt;String>" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/spacing_12"
-        android:paddingHorizontal="@dimen/spacing_16">
+        android:paddingHorizontal="@dimen/spacing_16"
+        android:paddingVertical="@dimen/spacing_12">
 
         <TextView
             android:id="@+id/send_money_label"
@@ -31,6 +36,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
             android:gravity="end"
+            android:text="@={moneyContent}"
             android:hint="@{isSender ? @string/send_money_sender_label : @string/send_money_receiver_label}"
             android:importantForAutofill="no"
             android:inputType="number"
@@ -39,16 +45,16 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/send_money_label" />
-        
+
         <TextView
             android:id="@+id/send_money_sender_warning_tv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/send_money_input_et"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/send_money_sender_enabled_warning"
             android:textColor="@color/gray_200"
             android:visibility="@{isSender ? View.VISIBLE : View.GONE}"
-            android:text="@string/send_money_sender_enabled_warning" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/send_money_input_et" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

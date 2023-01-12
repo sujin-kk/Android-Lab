@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.siolab.presentation.ui.send.SendViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,6 +43,7 @@
                 android:id="@+id/send_sender_input_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:moneyContent="@{viewModel._moneyOfSender}"
                 app:layout_constraintTop_toBottomOf="@id/send_top_exchange_rate_tv"
                 layout="@layout/layout_send_money_input_view" />
 
@@ -47,6 +51,7 @@
                 android:id="@+id/send_receiver_input_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:moneyContent="@{viewModel._moneyOfReceiver}"
                 app:layout_constraintTop_toBottomOf="@id/send_sender_input_view"
                 app:layout_constraintBottom_toBottomOf="parent"
                 layout="@layout/layout_send_money_input_view" />
