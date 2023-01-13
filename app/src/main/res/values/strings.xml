@@ -17,6 +17,9 @@
     <string name="send_money_sender_label">보내는 금액</string>
     <string name="send_money_sender_enabled_warning">%s %s 이상일 때 송금 가능</string>
     <string name="send_money_receiver_label">받는 금액</string>
+    <string name="send_money_way_standard">스탠다드</string>
+    <string name="send_money_way_express">익스프레스</string>
+    <string name="send_money_fee_label">센트비 수수료</string>
 
     <string name="history_label">송금내역</string>
     <string name="benefit_label">혜택</string>
