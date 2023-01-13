@@ -25,6 +25,13 @@
     <string name="send_money_detail_label">자세히</string>
     <string name="send_money_bank_label">은행</string>
 
+    <!-- Send Money Bottom Sheet -->
+    <string name="send_money_bottom_label">보내는 방법을 선택해 주세요</string>
+    <string name="send_money_bottom_later_label">송금 신청 후 나중에 입금하기</string>
+    <string name="send_money_bottom_later_desc">내 계좌(%s)에서 안내된 센트비 계좌로 은행 방문/모바일 이체 등을 통해 6시간 내 직접 입금합니다.</string>
+    <string name="send_money_bottom_now_label">바로 입금하기</string>
+    <string name="send_money_bottom_now_desc">내 계좌(%s)를 자동출금 계좌로 등록하여 송금 신청과 동시에 바로 입금합니다.</string>
+
     <string name="history_label">송금내역</string>
     <string name="benefit_label">혜택</string>
     <string name="service_center_label">고객센터</string>
