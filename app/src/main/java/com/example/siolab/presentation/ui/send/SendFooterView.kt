@@ -21,24 +21,18 @@ import com.example.siolab.R
 
 @Composable
 private fun ArrivalTime() {
-    Surface(
-        color = colorResource(id = R.color.white),
-        border = BorderStroke(0.5.dp, colorResource(id = R.color.gray_200)),
-        shape = RoundedCornerShape(4.dp),
-        shadowElevation = 8.dp
+    Column(
+        Modifier
+            .wrapContentSize()
     ) {
-
-        Column(
-            Modifier
-                .wrapContentSize()
-                .padding(12.dp)) {
-            Text(
-                text = "은행",
-            )
-            Text(
-                text = "2023. 1. 16. 도착", color = colorResource(id = R.color.gray_200)
-            )
-        }
+        Text(
+            text = "은행",
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold
+        )
+        Text(
+            text = "2023. 1. 16. 도착", color = colorResource(id = R.color.gray_200)
+        )
     }
 }
 
@@ -56,7 +50,7 @@ private fun WayToSend(isStandard: Boolean) {
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp)
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
         ) {
             Image(
                 painter = painterResource(id = timeIcon),
@@ -71,10 +65,10 @@ private fun WayToSend(isStandard: Boolean) {
     }
 }
 
-@Composable 
+@Composable
 private fun Fee(isStandard: Boolean) {
     val feeContent = if (isStandard) "2,500 KRW" else "5,000 KRW"
-    
+
     Column(horizontalAlignment = Alignment.End) {
         Text(
             text = stringResource(id = R.string.send_money_fee_label),
@@ -92,34 +86,61 @@ private fun Fee(isStandard: Boolean) {
 
 @Composable
 private fun Detail() {
-
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Text(
+            text = stringResource(id = R.string.send_money_detail_label),
+            color = colorResource(id = R.color.gray_200)
+        )
+        Image(
+            painter = painterResource(id = R.drawable.ic_right_arrow),
+            contentDescription = "detail arrow"
+        )
+    }
 }
 
 @Composable
-private fun SendMoneyItem() {
-    
+private fun SendMoneyItem(isStandard: Boolean) {
+    Surface(
+        color = colorResource(id = R.color.white),
+        border = BorderStroke(0.5.dp, colorResource(id = R.color.gray_200)),
+        shape = RoundedCornerShape(4.dp),
+        shadowElevation = 8.dp,
+        modifier = Modifier.padding(horizontal = 16.dp)
+    ) {
+        Column(Modifier.padding(8.dp)) {
+            Row {
+                ArrivalTime()
+                WayToSend(isStandard = isStandard)
+            }
+            Row(verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.SpaceBetween) {
+                Detail()
+                Fee(isStandard = isStandard)
+            }
+        }
+    }
 }
 
-@Preview
-@Composable
-private fun WayToSendPreview() {
-    WayToSend(true)
-}
-
-@Preview
-@Composable
-private fun ArrivalTimePreview() {
-    ArrivalTime()
-}
-
-@Preview
-@Composable
-private fun FeePreview() {
-    Fee(true)
-}
+//@Preview
+//@Composable
+//private fun WayToSendPreview() {
+//    WayToSend(true)
+//}
+//
+//@Preview
+//@Composable
+//private fun ArrivalTimePreview() {
+//    ArrivalTime()
+//}
+//
+//@Preview
+//@Composable
+//private fun FeePreview() {
+//    Fee(true)
+//}
+//
 
 @Preview
 @Composable
 private fun SendMoneyItemPreview() {
-
+    SendMoneyItem(true)
 }
