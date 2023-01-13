@@ -74,12 +74,16 @@ class SendFragment : BaseFragment<FragmentSendBinding>(R.layout.fragment_send) {
             setContent {
                 Surface() {
                     Column() {
-                        SendMoneyItem(isStandard = false) // express
-                        SendMoneyItem(isStandard = true) // standard
+                        SendMoneyItem(isStandard = false, onSendClick = { onSendMoneyItemClick(false) }) // express
+                        SendMoneyItem(isStandard = true, onSendClick = { onSendMoneyItemClick(true) }) // standard
                     }
                 }
             }
         }
+    }
+
+    private fun onSendMoneyItemClick(isStandard: Boolean) {
+
     }
 
     private fun observeData() {

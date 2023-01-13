@@ -11,6 +11,7 @@
     <color name="main_blue">#2E4BFF</color>
     <color name="background_blue">#DCE1FD</color>
     <color name="gray_200">#C7C7C7</color>
+    <color name="gray_300">#BDC2CF</color>
     <color name="highlight_red">#FF2451</color>
     <color name="background_red">#FFD8E0</color>
 </resources>

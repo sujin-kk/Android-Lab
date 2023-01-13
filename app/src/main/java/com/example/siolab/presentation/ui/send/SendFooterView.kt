@@ -2,6 +2,7 @@ package com.example.siolab.presentation.ui.send
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
@@ -26,7 +27,7 @@ private fun ArrivalTime() {
             .wrapContentSize()
     ) {
         Text(
-            text = "은행",
+            text = stringResource(id = R.string.send_money_bank_label),
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold
         )
@@ -103,15 +104,16 @@ private fun Detail() {
 }
 
 @Composable
-fun SendMoneyItem(isStandard: Boolean) {
+fun SendMoneyItem(isStandard: Boolean, onSendClick: () -> Unit) {
     Surface(
         color = colorResource(id = R.color.white),
         border = BorderStroke(0.5.dp, colorResource(id = R.color.gray_200)),
-        shape = RoundedCornerShape(4.dp),
+        shape = RoundedCornerShape(6.dp),
         shadowElevation = 8.dp,
         modifier = Modifier
-            .padding(horizontal = 16.dp , vertical = 24.dp)
+            .padding(horizontal = 16.dp, vertical = 24.dp)
             .fillMaxWidth()
+            .clickable(onClick = onSendClick)
     ) {
         Column(Modifier.padding(16.dp)) {
             Row(
@@ -137,27 +139,8 @@ fun SendMoneyItem(isStandard: Boolean) {
     }
 }
 
-//@Preview
-//@Composable
-//private fun WayToSendPreview() {
-//    WayToSend(true)
-//}
-//
-//@Preview
-//@Composable
-//private fun ArrivalTimePreview() {
-//    ArrivalTime()
-//}
-//
-//@Preview
-//@Composable
-//private fun FeePreview() {
-//    Fee(true)
-//}
-//
-
 @Preview
 @Composable
 private fun SendMoneyItemPreview() {
-    SendMoneyItem(true)
+    SendMoneyItem(true, { })
 }

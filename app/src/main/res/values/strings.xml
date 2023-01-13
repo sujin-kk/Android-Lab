@@ -23,7 +23,7 @@
     <string name="send_money_way_express">익스프레스</string>
     <string name="send_money_fee_label">센트비 수수료</string>
     <string name="send_money_detail_label">자세히</string>
-
+    <string name="send_money_bank_label">은행</string>
 
     <string name="history_label">송금내역</string>
     <string name="benefit_label">혜택</string>
