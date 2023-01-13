@@ -57,23 +57,12 @@
                 layout="@layout/layout_send_money_input_view" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.core.widget.NestedScrollView
+        <androidx.compose.ui.platform.ComposeView
             android:id="@+id/send_bottom_footer_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/send_top_header_layout"
-            app:layout_constraintVertical_weight="6">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/send_top_header_layout"
-                app:layout_constraintVertical_weight="6">
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.core.widget.NestedScrollView>
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

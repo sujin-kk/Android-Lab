@@ -30,6 +30,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+        compose true
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -37,9 +42,8 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        viewBinding true
-        dataBinding true
+    composeOptions {
+        kotlinCompilerExtensionVersion versions.compose
     }
 }
 
@@ -54,6 +58,7 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
     implementation "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
     implementation "androidx.navigation:navigation-dynamic-features-fragment:${versions.navigation}"
+    implementation "androidx.navigation:navigation-compose:${versions.navigation}"
 
     // timber
     implementation "com.jakewharton.timber:timber:${versions.timber}"
@@ -68,12 +73,22 @@ dependencies {
     // lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:${versions.lifecycle}"
+
+    // activity
+    implementation "androidx.activity:activity-compose:${versions.activity}"
 
     // test
     testImplementation "junit:junit:${versions.junit}"
     androidTestImplementation "androidx.test.ext:junit:${versions.test_junit}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${versions.test_espresso}"
     androidTestImplementation "androidx.navigation:navigation-testing:${versions.navigation}"
+
+    // compose
+    implementation "androidx.compose.runtime:runtime-livedata:${versions.compose}"
+    implementation "androidx.compose.ui:ui:${versions.compose}"
+    implementation "androidx.compose.ui:ui-tooling:${versions.compose}"
+    implementation "androidx.compose.ui:ui-tooling-preview:${versions.compose}"
 }
 
 kapt {
