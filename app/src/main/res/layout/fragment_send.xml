@@ -20,9 +20,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/main_blue"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/send_bottom_footer_layout"
-            app:layout_constraintVertical_weight="4">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_weight="4.5">
 
             <TextView
                 android:id="@+id/send_top_exchange_rate_tv"
@@ -41,28 +41,29 @@
 
             <include
                 android:id="@+id/send_sender_input_view"
+                layout="@layout/layout_send_money_input_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:moneyContent="@{viewModel.moneyOfSender}"
                 app:layout_constraintTop_toBottomOf="@id/send_top_exchange_rate_tv"
-                layout="@layout/layout_send_money_input_view" />
+                app:moneyContent="@{viewModel.moneyOfSender}" />
 
             <include
                 android:id="@+id/send_receiver_input_view"
+                layout="@layout/layout_send_money_input_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:moneyContent="@{viewModel.moneyOfReceiver}"
-                app:layout_constraintTop_toBottomOf="@id/send_sender_input_view"
                 app:layout_constraintBottom_toBottomOf="parent"
-                layout="@layout/layout_send_money_input_view" />
+                app:layout_constraintTop_toBottomOf="@id/send_sender_input_view"
+                app:moneyContent="@{viewModel.moneyOfReceiver}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.compose.ui.platform.ComposeView
             android:id="@+id/send_bottom_footer_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/send_top_header_layout"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintVertical_weight="5.5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -4,15 +4,16 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Surface
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.siolab.R
 import com.example.siolab.databinding.FragmentSendBinding
 import com.example.siolab.presentation.common.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 @AndroidEntryPoint
 class SendFragment : BaseFragment<FragmentSendBinding>(R.layout.fragment_send) {
@@ -64,6 +65,21 @@ class SendFragment : BaseFragment<FragmentSendBinding>(R.layout.fragment_send) {
             }
 
         })
+
+        // compose
+        binding.sendBottomFooterLayout.apply {
+            setViewCompositionStrategy(
+                ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
+            )
+            setContent {
+                Surface() {
+                    Column() {
+                        SendMoneyItem(isStandard = false) // express
+                        SendMoneyItem(isStandard = true) // standard
+                    }
+                }
+            }
+        }
     }
 
     private fun observeData() {

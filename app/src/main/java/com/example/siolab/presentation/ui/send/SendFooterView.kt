@@ -54,12 +54,14 @@ private fun WayToSend(isStandard: Boolean) {
         ) {
             Image(
                 painter = painterResource(id = timeIcon),
-                contentDescription = "way to send"
+                contentDescription = "way to send",
+                Modifier.size(width = 14.dp, height = 14.dp)
             )
             Text(
                 text = stringResource(id = wayText),
                 color = colorResource(id = highlightColor),
-                modifier = Modifier.padding(start = 4.dp)
+                modifier = Modifier.padding(start = 4.dp),
+                fontSize = 12.sp
             )
         }
     }
@@ -89,30 +91,45 @@ private fun Detail() {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Text(
             text = stringResource(id = R.string.send_money_detail_label),
-            color = colorResource(id = R.color.gray_200)
+            color = colorResource(id = R.color.gray_200),
+            fontSize = 12.sp
         )
         Image(
             painter = painterResource(id = R.drawable.ic_right_arrow),
-            contentDescription = "detail arrow"
+            contentDescription = "detail arrow",
+            Modifier.size(width = 18.dp, height = 18.dp)
         )
     }
 }
 
 @Composable
-private fun SendMoneyItem(isStandard: Boolean) {
+fun SendMoneyItem(isStandard: Boolean) {
     Surface(
         color = colorResource(id = R.color.white),
         border = BorderStroke(0.5.dp, colorResource(id = R.color.gray_200)),
         shape = RoundedCornerShape(4.dp),
         shadowElevation = 8.dp,
-        modifier = Modifier.padding(horizontal = 16.dp)
+        modifier = Modifier
+            .padding(horizontal = 16.dp , vertical = 24.dp)
+            .fillMaxWidth()
     ) {
-        Column(Modifier.padding(8.dp)) {
-            Row {
+        Column(Modifier.padding(16.dp)) {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
                 ArrivalTime()
                 WayToSend(isStandard = isStandard)
             }
-            Row(verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.SpaceBetween) {
+            Spacer(
+                Modifier
+                    .size(20.dp)
+                    .fillMaxWidth())
+            Row(
+                verticalAlignment = Alignment.Bottom,
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
                 Detail()
                 Fee(isStandard = isStandard)
             }
