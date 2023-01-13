@@ -65,6 +65,7 @@ fun WayToSendCheckCard(isCheck: Boolean, isNow: Boolean) {
 
             Column() {
                 Text(text = wayToSendLabel, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                Spacer(modifier = Modifier.size(6.dp))
                 Text(text = wayToSendDesc, modifier = Modifier.wrapContentSize())
             }
         }
