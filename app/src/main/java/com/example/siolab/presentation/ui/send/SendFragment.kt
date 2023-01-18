@@ -5,7 +5,13 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material.BottomSheetState
+import androidx.compose.material.BottomSheetValue
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.rememberBottomSheetScaffoldState
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -22,7 +28,6 @@ class SendFragment : BaseFragment<FragmentSendBinding>(R.layout.fragment_send) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initView()
         observeData()
     }
