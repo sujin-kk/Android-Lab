@@ -13,6 +13,7 @@ import com.example.siolab.R
 import com.example.siolab.databinding.FragmentSendBinding
 import com.example.siolab.presentation.common.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -90,22 +91,19 @@ class SendFragment : BaseFragment<FragmentSendBinding>(R.layout.fragment_send) {
         lifecycleScope.launch {
             with(sendViewModel) {
                 // 보내는 금액 입력 -> 받는 금액 변화
-                moneyOfSender.observe(viewLifecycleOwner) {
+                moneyOfSender.collectLatest {
                     if (binding.sendSenderInputView.sendMoneyInputEt.isFocused) {
                         binding.sendReceiverInputView.sendMoneyInputEt.setText(sendViewModel.calculateMoneyOfReceiver())
                     }
                 }
 
                 // 받는 금액 입력 -> 보내는 금액 변화
-                moneyOfReceiver.observe(viewLifecycleOwner) {
+                moneyOfReceiver.collectLatest {
                     if (binding.sendReceiverInputView.sendMoneyInputEt.isFocused) {
                         binding.sendSenderInputView.sendMoneyInputEt.setText(sendViewModel.calculateMoneyOfSender())
                     }
                 }
             }
         }
-
     }
-
-
 }
