@@ -3,11 +3,9 @@ package com.example.siolab.presentation.ui.history
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.siolab.presentation.common.base.Event
-import com.example.siolab.presentation.common.base.SingleLiveEvent
+import com.example.siolab.presentation.common.lifecycle.Event
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import timber.log.Timber
 
 class HistoryViewModel: ViewModel() {
 

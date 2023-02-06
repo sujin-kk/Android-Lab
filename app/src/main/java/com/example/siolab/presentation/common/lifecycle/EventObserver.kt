@@ -1,4 +1,4 @@
-package com.example.siolab.presentation.common.base
+package com.example.siolab.presentation.common.lifecycle
 
 import androidx.lifecycle.Observer
 

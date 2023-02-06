@@ -1,4 +1,4 @@
-package com.example.siolab.presentation.common.base
+package com.example.siolab.presentation.common.lifecycle
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
