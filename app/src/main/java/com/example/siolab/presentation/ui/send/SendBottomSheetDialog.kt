@@ -1,16 +1,15 @@
 package com.example.siolab.presentation.ui.send
 
+import android.view.LayoutInflater
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,25 +22,27 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.example.siolab.R
 import com.example.siolab.presentation.common.components.SentbeFooterButton
-import kotlinx.coroutines.CoroutineScope
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SendBottomSheet() {
+    var skipHalfExpanded by remember { mutableStateOf(false) }
+
     val coroutineScope = rememberCoroutineScope()
-    val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
-        bottomSheetState = BottomSheetState(BottomSheetValue.Collapsed)
+    val bottomSheetState = rememberModalBottomSheetState(
+        initialValue = ModalBottomSheetValue.Hidden,
+        skipHalfExpanded = skipHalfExpanded
     )
-    BottomSheetScaffold(
-        scaffoldState = bottomSheetScaffoldState,
+
+    ModalBottomSheetLayout(
         sheetContent = {
             Surface(color = colorResource(id = R.color.white), shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)) {
                 SendBottomSheetContent({})
             }
-        }
+        },
+        sheetState = bottomSheetState
     ) {
-        // Screen Content
-        // TODO : SendFragment에서 이 바텀 시트를 어떻게 불러올건지 처리
+
     }
 }
 
@@ -131,7 +132,5 @@ private fun UnCheckedBox() {
 @Preview
 @Composable
 private fun SendBottomSheetPreview() {
-//    Surface(color = colorResource(id = R.color.white), shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)) {
-//        SendBottomSheet({})
-//    }
+    SendBottomSheet()
 }

@@ -1,23 +1,20 @@
 package com.example.siolab.presentation.ui.send
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.BottomSheetState
-import androidx.compose.material.BottomSheetValue
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.rememberBottomSheetScaffoldState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.siolab.R
 import com.example.siolab.databinding.FragmentSendBinding
 import com.example.siolab.presentation.common.base.BaseFragment
+import com.example.siolab.presentation.ui.TestActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -33,6 +30,7 @@ class SendFragment : BaseFragment<FragmentSendBinding>(R.layout.fragment_send) {
     }
 
     private fun initView() {
+
         // sender
         binding.sendSenderInputView.isSender = true
         binding.sendSenderInputView.moneyContent = sendViewModel.moneyOfSender
@@ -89,7 +87,8 @@ class SendFragment : BaseFragment<FragmentSendBinding>(R.layout.fragment_send) {
     }
 
     private fun onSendMoneyItemClick(isStandard: Boolean) {
-
+        val intent = Intent(activity, TestActivity::class.java)
+        startActivity(intent)
     }
 
     private fun observeData() {
