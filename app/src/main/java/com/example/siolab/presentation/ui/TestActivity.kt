@@ -4,15 +4,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.siolab.R
+import com.example.siolab.databinding.ActivityMainBinding
+import com.example.siolab.databinding.ActivityTestBinding
+import com.example.siolab.presentation.common.base.BaseActivity
+import com.example.siolab.presentation.common.extentions.showSnackBar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class TestActivity : AppCompatActivity() {
+class TestActivity : BaseActivity<ActivityTestBinding>(R.layout.activity_test) {
     private val viewModel: TestViewModel by viewModels()
 
     private val countingFlow: Flow<Int> = flow {
@@ -25,10 +30,21 @@ class TestActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_test)
+    }
 
-        Timber.tag(TAG).e("화면 회전 마침")
+    private fun initListener() {
+        binding.testSnackbarBtn.setOnClickListener {
+            viewModel.userClickOnButton()
+        }
+    }
 
+    private fun observeData() {
+        viewModel.isToastEvent.observe(this, Observer {
+            if (it) binding.root.showSnackBar("클릭 이벤트 감지", isShort = true)
+        })
+    }
+
+    private fun testFlow() {
         lifecycleScope.launch {
             viewModel.stateFlow.collect {
                 Timber.tag(TAG).d("state collected value : $it")
@@ -42,23 +58,7 @@ class TestActivity : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Timber.tag(TAG).e("화면 회전 시작")
-
-    }
-
-//    override fun onStart() {
-//        super.onStart()
-//        Timber.tag("SioFlowTest").e("다시 포그라운드로 진입")
-//    }
-//
-//    override fun onStop() {
-//        super.onStop()
-//        Timber.tag("SioFlowTest").e("홈 버튼을 눌러 백그라운드 상태")
-//    }
-
     companion object {
-        private const val TAG = "SioFlowTest"
+        private const val TAG = "TestActivity"
     }
 }

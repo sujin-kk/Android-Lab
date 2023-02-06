@@ -9,11 +9,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Surface
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.siolab.R
 import com.example.siolab.databinding.FragmentSendBinding
 import com.example.siolab.presentation.common.base.BaseFragment
+import com.example.siolab.presentation.common.extentions.showSnackBar
 import com.example.siolab.presentation.ui.TestActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -87,8 +89,8 @@ class SendFragment : BaseFragment<FragmentSendBinding>(R.layout.fragment_send) {
     }
 
     private fun onSendMoneyItemClick(isStandard: Boolean) {
-        val intent = Intent(activity, TestActivity::class.java)
-        startActivity(intent)
+//        val intent = Intent(requireContext(), TestActivity::class.java)
+//        startActivity(intent)
     }
 
     private fun observeData() {

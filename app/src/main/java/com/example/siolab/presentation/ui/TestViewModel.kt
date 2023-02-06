@@ -1,11 +1,14 @@
 package com.example.siolab.presentation.ui
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flow
 import timber.log.Timber
 
 
@@ -22,41 +25,13 @@ class TestViewModel : ViewModel() {
     val sharedFlow: MutableSharedFlow<Int>
         get() = _sharedFlow
 
-    init {
-//        viewModelScope.launch {
-//            updateData()
-//        }
+    private val _isToastEvent = MutableLiveData<Boolean>()
+    val isToastEvent: LiveData<Boolean>
+        get() = _isToastEvent
 
-//        viewModelScope.launch {
-//            Timber.tag(TAG).e("ViewModelScope Start")
-//            launch {
-//                val a = async {
-//                    delay(1000)
-//                    1
-//                }
-//                val b = a.await()
-//                println(b)
-//            }
-//        }
-
-        viewModelScope.launch {
-             Timber.tag(TAG).e("1")
-
-            launch {
-                Timber.tag(TAG).e("2")
-                Timber.tag(TAG).e("3")
-
-            }
-        }
+    fun userClickOnButton() {
+        _isToastEvent.value = true
     }
-
-//    private suspend fun updateData() {
-//        repeat(10) {
-//            delay(500)
-//            _stateFlow.value = it
-//            Timber.tag(TAG).d("emitted value : $it")
-//        }
-//    }
 
     private suspend fun updateData() {
         repeat(5) {
@@ -67,6 +42,6 @@ class TestViewModel : ViewModel() {
     }
 
     companion object {
-        private const val TAG = "SioFlowTest"
+        private const val TAG = "TestActivity"
     }
 }

@@ -1,9 +1,12 @@
 package com.example.siolab.presentation.ui.send
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class SendViewModel : ViewModel() {
     val curSender = MutableStateFlow("KOR")
@@ -22,4 +25,7 @@ class SendViewModel : ViewModel() {
         return if (moneyOfReceiver.value.isNotEmpty()) (moneyOfReceiver.value.toDouble() * curExchangeRate.value.toDouble()).toString() else ""
     }
 
+    companion object {
+        private const val TAG = "SendViewModel"
+    }
 }
