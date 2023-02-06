@@ -30,11 +30,26 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
             setOnItemSelectedListener { menuItem ->
                 when (menuItem.itemId) {
-                    R.id.sendFragment -> navController.navigate(R.id.sendFragment)
-                    R.id.historyFragment -> navController.navigate(R.id.historyFragment)
-                    R.id.benefitFragment -> navController.navigate(R.id.benefitFragment)
-                    R.id.serviceCenterFragment -> navController.navigate(R.id.serviceCenterFragment)
-                    R.id.allMenuFragment -> navController.navigate(R.id.allMenuFragment)
+                    R.id.sendFragment -> {
+                        navController.navigate(R.id.sendFragment)
+                        // navController.popBackStack()
+                    }
+                    R.id.historyFragment -> {
+                        navController.navigate(R.id.historyFragment)
+                        navController.popBackStack()
+                    }
+                    R.id.benefitFragment -> {
+                        navController.navigate(R.id.benefitFragment)
+                        navController.popBackStack()
+                    }
+                    R.id.serviceCenterFragment -> {
+                        navController.navigate(R.id.serviceCenterFragment)
+                        navController.popBackStack()
+                    }
+                    R.id.allMenuFragment -> {
+                        navController.navigate(R.id.allMenuFragment)
+                        navController.popBackStack()
+                    }
                 }
                 true
             }

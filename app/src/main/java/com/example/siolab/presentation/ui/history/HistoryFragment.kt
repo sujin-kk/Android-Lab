@@ -24,11 +24,6 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(R.layout.fragment_h
         observeData()
     }
 
-    override fun onStart() {
-        super.onStart()
-        // observeData()
-    }
-
     private fun initListener() {
         binding.historyTestSnackbarBtn.setOnClickListener {
             historyViewModel.userClickOnButton()
@@ -44,6 +39,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(R.layout.fragment_h
 //        historyViewModel.isToastEvent.observe(viewLifecycleOwner, EventObserver {
 //            if (it) binding.root.showSnackBar("클릭 이벤트 감지", isShort = true)
 //        })
+
 //        lifecycleScope.launch {
 //            repeatOnLifecycle(Lifecycle.State.STARTED) {
 //                historyViewModel.isToastFlowEvent.collect {
