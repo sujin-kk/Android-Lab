@@ -32,23 +32,31 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 when (menuItem.itemId) {
                     R.id.sendFragment -> {
                         navController.navigate(R.id.sendFragment)
-                        // navController.popBackStack()
                     }
                     R.id.historyFragment -> {
                         navController.navigate(R.id.historyFragment)
-                        navController.popBackStack()
+                        if (!navController.popBackStack()) {
+                            finish()
+                        }
                     }
                     R.id.benefitFragment -> {
                         navController.navigate(R.id.benefitFragment)
-                        navController.popBackStack()
+                        if (!navController.popBackStack()) {
+                            finish()
+                        }
                     }
                     R.id.serviceCenterFragment -> {
                         navController.navigate(R.id.serviceCenterFragment)
-                        navController.popBackStack()
+                        if (!navController.popBackStack()) {
+                            finish()
+                        }
                     }
                     R.id.allMenuFragment -> {
                         navController.navigate(R.id.allMenuFragment)
                         navController.popBackStack()
+                        if (!navController.popBackStack()) {
+                            finish()
+                        }
                     }
                 }
                 true
