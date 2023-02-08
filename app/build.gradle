@@ -74,6 +74,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:${versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:${versions.lifecycle}"
 
     // activity
     implementation "androidx.activity:activity-compose:${versions.activity}"

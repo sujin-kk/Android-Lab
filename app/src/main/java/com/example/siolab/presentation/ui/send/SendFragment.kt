@@ -1,6 +1,5 @@
 package com.example.siolab.presentation.ui.send
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,14 +8,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Surface
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.example.siolab.R
 import com.example.siolab.databinding.FragmentSendBinding
 import com.example.siolab.presentation.common.base.BaseFragment
-import com.example.siolab.presentation.common.extentions.showSnackBar
-import com.example.siolab.presentation.ui.TestActivity
+import com.example.siolab.presentation.ui.send.component.SendMoneyItem
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

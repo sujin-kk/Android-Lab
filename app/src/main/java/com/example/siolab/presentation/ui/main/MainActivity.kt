@@ -35,28 +35,22 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                     }
                     R.id.historyFragment -> {
                         navController.navigate(R.id.historyFragment)
-                        if (!navController.popBackStack()) {
-                            finish()
-                        }
+                        // navController.popBackStack()
+//                        if (!navController.popBackStack()) {
+//                            finish()
+//                        }
                     }
                     R.id.benefitFragment -> {
                         navController.navigate(R.id.benefitFragment)
-                        if (!navController.popBackStack()) {
-                            finish()
-                        }
+                       // navController.popBackStack()
                     }
                     R.id.serviceCenterFragment -> {
                         navController.navigate(R.id.serviceCenterFragment)
-                        if (!navController.popBackStack()) {
-                            finish()
-                        }
+                        // navController.popBackStack()
+
                     }
                     R.id.allMenuFragment -> {
                         navController.navigate(R.id.allMenuFragment)
-                        navController.popBackStack()
-                        if (!navController.popBackStack()) {
-                            finish()
-                        }
                     }
                 }
                 true

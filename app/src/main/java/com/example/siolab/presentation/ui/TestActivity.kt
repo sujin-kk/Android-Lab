@@ -3,10 +3,7 @@ package com.example.siolab.presentation.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.*
 import com.example.siolab.R
 import com.example.siolab.databinding.ActivityMainBinding
 import com.example.siolab.databinding.ActivityTestBinding
@@ -19,6 +16,7 @@ import timber.log.Timber
 
 class TestActivity : BaseActivity<ActivityTestBinding>(R.layout.activity_test) {
     private val viewModel: TestViewModel by viewModels()
+    private lateinit var testViewModel: TestViewModel
 
     private val countingFlow: Flow<Int> = flow {
         for (i in 1..10) {
@@ -28,8 +26,22 @@ class TestActivity : BaseActivity<ActivityTestBinding>(R.layout.activity_test) {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val userText = binding.testSnackbarBtn.text
+        binding.testSnackbarBtn.text = "hi"
+        outState.putCharSequence("userText", userText)
+
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val userContent = savedInstanceState.getCharSequence("")
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        testViewModel = ViewModelProvider(owner = this)[TestViewModel::class.java]
     }
 
     private fun initListener() {
