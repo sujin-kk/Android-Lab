@@ -40,18 +40,18 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(R.layout.fragment_h
 //            if (it) binding.root.showSnackBar("클릭 이벤트 감지", isShort = true)
 //        })
 
-//        lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                historyViewModel.isToastFlowEvent.collect {
-//                    if (it) binding.root.showSnackBar("클릭 이벤트 감지", isShort = true)
-//                }
-//            }
-//        }
-
-        lifecycleScope.launchWhenStarted {
-            historyViewModel.isToastFlowEvent.collect {
-                if (it) binding.root.showSnackBar("클릭 이벤트 감지", isShort = true)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                historyViewModel.isToastFlowEvent.collect {
+                    if (it) binding.root.showSnackBar("클릭 이벤트 감지", isShort = true)
+                }
             }
         }
+
+//        lifecycleScope.launchWhenStarted {
+//            historyViewModel.isToastFlowEvent.collect {
+//                if (it) binding.root.showSnackBar("클릭 이벤트 감지", isShort = true)
+//            }
+//        }
     }
 }

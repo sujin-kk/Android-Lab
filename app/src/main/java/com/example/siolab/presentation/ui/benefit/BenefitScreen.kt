@@ -1,6 +1,6 @@
 package com.example.siolab.presentation.ui.benefit
 
-import android.app.LocaleConfig
+import android.annotation.SuppressLint
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -9,27 +9,43 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
 data class TestModel(var num: Int)
 
+@SuppressLint("UnrememberedMutableState")
 @Composable
 fun BenefitScreen(
     modifier: Modifier = Modifier,
-    // benefitViewModel: BenefitViewModel = viewModel()
+    // benefitViewModel: BenefitViewModel = viewModel(),
 ) {
     val benefitViewModel: BenefitViewModel = viewModel(LocalContext.current as ComponentActivity)
+    val testNumber by benefitViewModel.testNumber.collectAsState()
+    var number by mutableStateOf(0)
+
 
     Column(modifier.fillMaxWidth()) {
-        Button(onClick = { benefitViewModel.addNumber() }) {
+        Button(onClick = {
+            // benefitViewModel.addNumber()
+            number++
+            Timber.e("!!!! $number !!!!")
+
+        }) {
             Text("Add Count")
         }
-        CounterA(modifier = modifier, benefitViewModel = benefitViewModel)
-        CounterB(modifier = modifier, benefitViewModel = benefitViewModel)
+        Text(text = number.toString())
+        //CounterA(modifier = modifier, benefitViewModel = benefitViewModel)
+        //CounterB(modifier = modifier, benefitViewModel = benefitViewModel)
     }
 }
 

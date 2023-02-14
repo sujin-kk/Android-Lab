@@ -1,14 +1,25 @@
 package com.example.siolab.presentation.ui.send
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.Dispatchers
+import com.example.siolab.domain.local.repository.LocalRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.withContext
 import timber.log.Timber
+import javax.inject.Inject
 
-class SendViewModel : ViewModel() {
+@HiltViewModel
+class SendViewModel @Inject constructor(
+    private val localRepositoryA: LocalRepository,
+    private val localRepositoryB: LocalRepository,
+): ViewModel() {
+
+    init {
+        Timber.tag("SendViewModel").e(
+            "repository A: ${localRepositoryA.hashCode()}" +
+                    "\nrepository B: ${localRepositoryB.hashCode()}"
+        )
+    }
+
     val curSender = MutableStateFlow("KOR")
     val curReceiver = MutableStateFlow("USD")
     val curExchangeRate = MutableStateFlow("1254.32")

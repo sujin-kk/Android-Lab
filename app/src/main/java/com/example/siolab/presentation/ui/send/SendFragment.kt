@@ -9,8 +9,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.siolab.R
 import com.example.siolab.databinding.FragmentSendBinding
+import com.example.siolab.domain.local.repository.LocalRepository
 import com.example.siolab.presentation.common.base.BaseFragment
 import com.example.siolab.presentation.ui.send.component.SendMoneyItem
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,9 +27,13 @@ class SendFragment : BaseFragment<FragmentSendBinding>(R.layout.fragment_send) {
         super.onViewCreated(view, savedInstanceState)
         initView()
         observeData()
+
     }
 
     private fun initView() {
+        binding.sendTopExchangeRateTv.setOnClickListener {
+            if (!findNavController().navigateUp()) activity?.finish()
+        }
 
         // sender
         binding.sendSenderInputView.isSender = true
