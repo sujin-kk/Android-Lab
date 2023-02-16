@@ -26,3 +26,4 @@ class BenefitFragment : BaseFragment<FragmentBenefitBinding>(R.layout.fragment_b
 
 
 }
+
