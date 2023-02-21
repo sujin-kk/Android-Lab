@@ -1,11 +1,11 @@
 package com.example.siolab.presentation.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.compose.runtime.*
+import androidx.compose.runtime.snapshots.Snapshot
 import androidx.lifecycle.*
 import com.example.siolab.R
-import com.example.siolab.databinding.ActivityMainBinding
 import com.example.siolab.databinding.ActivityTestBinding
 import com.example.siolab.presentation.common.base.BaseActivity
 import com.example.siolab.presentation.common.extentions.showSnackBar
@@ -42,6 +42,41 @@ class TestActivity : BaseActivity<ActivityTestBinding>(R.layout.activity_test) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         testViewModel = ViewModelProvider(owner = this)[TestViewModel::class.java]
+
+        var name by mutableStateOf(
+            value = "Sio",
+            policy = object: SnapshotMutationPolicy<String> {
+                override fun equivalent(a: String, b: String): Boolean = a==b
+
+                override fun merge(previous: String, current: String, applied: String): String =
+                    "$previous $current $applied"
+            }
+        )
+
+
+
+        val snapshot1 = Snapshot.takeMutableSnapshot()
+        val snapshot2 = Snapshot.takeMutableSnapshot()
+
+        snapshot1.enter {
+            name = "Jerry"
+            println("!!!!! DEBUG !!!!! In snapshot1 : $name")
+        }
+
+        snapshot2.enter {
+            name = "JG"
+            println("!!!!! DEBUG !!!!! In snapshot2 : $name")
+        }
+
+        println("!!!!! DEBUG !!!!! Before Apply: $name")
+
+        snapshot1.apply()
+        println("!!!!! DEBUG !!!!! After Apply 1 : $name")
+
+        snapshot2.apply()
+        println("!!!!! DEBUG !!!!! After Apply 2 : $name")
+
+        snapshot1.dispose()
     }
 
     private fun initListener() {
@@ -74,3 +109,7 @@ class TestActivity : BaseActivity<ActivityTestBinding>(R.layout.activity_test) {
         private const val TAG = "TestActivity"
     }
 }
+
+//class Employee {
+//    var name by mutableStateOf("")
+//}

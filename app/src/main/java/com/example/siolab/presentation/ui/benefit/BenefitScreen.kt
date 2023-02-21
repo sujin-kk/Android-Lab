@@ -17,35 +17,66 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
+import com.example.siolab.designsystem.MyTextButton
+import com.example.siolab.presentation.ui.TestActivity
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import timber.log.Timber
+import kotlin.coroutines.CoroutineContext
 
 data class TestModel(var num: Int)
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @SuppressLint("UnrememberedMutableState")
 @Composable
 fun BenefitScreen(
     modifier: Modifier = Modifier,
-    // benefitViewModel: BenefitViewModel = viewModel(),
+    benefitViewModel: BenefitViewModel = viewModel(),
 ) {
-    val benefitViewModel: BenefitViewModel = viewModel(LocalContext.current as ComponentActivity)
     val testNumber by benefitViewModel.testNumber.collectAsState()
     var number by mutableStateOf(0)
 
+    var balance by remember { mutableStateOf(0) }
+    val transactions = listOf(1000, 500, 100, 200, 300, 400, 500, 1000)
 
-    Column(modifier.fillMaxWidth()) {
-        Button(onClick = {
-            // benefitViewModel.addNumber()
-            number++
-            Timber.e("!!!! $number !!!!")
-
-        }) {
-            Text("Add Count")
+    val countingFlow: Flow<Int> = flow {
+        for (i in 1..10) {
+            delay(1000)
+            emit(i)
         }
-        Text(text = number.toString())
-        //CounterA(modifier = modifier, benefitViewModel = benefitViewModel)
-        //CounterB(modifier = modifier, benefitViewModel = benefitViewModel)
+    }
+
+    val coroutineScope = rememberCoroutineScope()
+    val coroutineContext = coroutineScope.coroutineContext
+
+    // val count by countingFlow.collectAsStateWithLifecycle(initialValue = 0)
+    var count by remember { mutableStateOf(0) }
+    // var count by mutableStateOf(0)
+
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .padding(top = 30.dp)
+    ) {
+
+        Text(text = "current : $count")
+
+        MyTextButton(
+            modifier = Modifier.wrapContentSize(),
+            onClick = { onButtonClick(coroutineScope, countingFlow) },
+            text = { Text(text = "Button") }
+        )
+    }
+
+}
+
+fun onButtonClick(coroutineScope: CoroutineScope, countingFlow: Flow<Int>) {
+    var myCount = 0
+    coroutineScope.launch {
+        countingFlow.collect {
+            myCount = it
+        }
     }
 }
 
